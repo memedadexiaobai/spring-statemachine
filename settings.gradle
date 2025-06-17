@@ -56,6 +56,8 @@ include 'spring-statemachine-data:jpa'
 include 'spring-statemachine-data:redis'
 include 'spring-statemachine-data:mongodb'
 
+include 'xbj-practice'
+
 rootProject.children.find {
 	if (it.name == 'spring-statemachine-recipes') {
 		it.name = 'spring-statemachine-recipes-common'

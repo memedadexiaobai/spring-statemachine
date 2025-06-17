@@ -1,0 +1,50 @@
+buildscript {
+    ext {
+        springBootVersion = '3.1.6'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.xbj-practice'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 17
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+
+ext {
+    springStatemachineVersion = '4.0.0'
+}
+
+dependencies {
+//    implementation('org.springframework.statemachine:spring-statemachine-starter')
+    implementation project(':spring-statemachine-starter')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.statemachine:spring-statemachine-bom:${springStatemachineVersion}"
+    }
+}
+
+springBoot {
+    mainClass = 'com.bj.Application'
+}

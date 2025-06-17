@@ -48,20 +48,20 @@ public class StateMachineConfig {
 	//tag::snippetE[]
 	static class SecurityConfig {
 
-		@Bean
-		public InMemoryUserDetailsManager userDetailsService() {
-			UserDetails user = User.withDefaultPasswordEncoder()
-					.username("user")
-					.password("password")
-					.roles("USER")
-					.build();
-			UserDetails admin = User.withDefaultPasswordEncoder()
-					.username("admin")
-					.password("password")
-					.roles("USER", "ADMIN")
-					.build();
-			return new InMemoryUserDetailsManager(user, admin);
-		}
+//		@Bean
+//		public InMemoryUserDetailsManager userDetailsService() {
+//			UserDetails user = User.withDefaultPasswordEncoder()
+//					.username("user")
+//					.password("password")
+//					.roles("USER")
+//					.build();
+//			UserDetails admin = User.withDefaultPasswordEncoder()
+//					.username("admin")
+//					.password("password")
+//					.roles("USER", "ADMIN")
+//					.build();
+//			return new InMemoryUserDetailsManager(user, admin);
+//		}
 	}
 //end::snippetE[]
 
