@@ -1,4 +1,4 @@
-package com.bj.config;
+package com.bj.StatemachineConfiguration;
 
 import com.bj.enums.Events;
 import com.bj.enums.States;

@@ -1,4 +1,4 @@
-package com.bj.config;
+package com.bj.StatemachineConfiguration;
 
 import com.bj.enums.Events;
 import com.bj.enums.States;
@@ -7,11 +7,12 @@ import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 
-import java.util.EnumSet;
-
+/**
+ * Configuring Hierarchical States
+ */
 @Configuration
 @EnableStateMachine
-public class Config1Enums
+public class Config2
 		extends EnumStateMachineConfigurerAdapter<States, Events> {
 
 	@Override
@@ -20,8 +21,12 @@ public class Config1Enums
 		states
 			.withStates()
 				.initial(States.S1)
-				.end(States.SF)
-				.states(EnumSet.allOf(States.class));
+				.state(States.S1)
+				.and()
+				.withStates()
+					.parent(States.S1)
+					.initial(States.S2)
+					.state(States.S2);
 	}
 
 }

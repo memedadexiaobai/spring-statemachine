@@ -1,18 +1,22 @@
-package com.bj.config;
+package com.bj.StatemachineConfiguration.pseudoStates;
 
 import com.bj.enums.Events;
 import com.bj.enums.States;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.statemachine.action.Action;
 import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 
+import java.util.EnumSet;
+
 /**
- * Configuring Hierarchical States
+ * Initial State
  */
 @Configuration
 @EnableStateMachine
-public class Config2
+public class Config11
 		extends EnumStateMachineConfigurerAdapter<States, Events> {
 
 	@Override
@@ -20,13 +24,16 @@ public class Config2
 			throws Exception {
 		states
 			.withStates()
-				.initial(States.S1)
-				.state(States.S1)
-				.and()
-				.withStates()
-					.parent(States.S1)
-					.initial(States.S2)
-					.state(States.S2);
+				.initial(States.S1, initialAction())
+				.end(States.SF)
+				.states(EnumSet.allOf(States.class));
+	}
+
+	@Bean
+	public Action<States, Events> initialAction() {
+		return context -> {
+			// do something initially
+		};
 	}
 
 }

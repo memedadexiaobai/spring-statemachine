@@ -1,4 +1,4 @@
-package com.bj.config;
+package com.bj.StatemachineConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
