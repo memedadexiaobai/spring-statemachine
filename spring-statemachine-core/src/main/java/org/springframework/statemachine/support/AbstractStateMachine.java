@@ -656,30 +656,26 @@ public abstract class AbstractStateMachine<S, E> extends StateMachineObjectSuppo
 							Mono<StateMachineEventResult<S, E>> result = Flux.fromIterable(transitions)
 								.filter(transition -> cs != null && transition.getTrigger() != null)
 								.filter(transition -> StateMachineUtils.containsAtleastOne(transition.getSource().getIds(), cs.getIds()))
-								.flatMap(transition -> {
-									return Mono.from(transition.getTrigger().evaluate(triggerContext))
-										.flatMap(e -> {
-											if (e) {
-												MonoSinkStateMachineExecutorCallback callback = new MonoSinkStateMachineExecutorCallback();
-												Mono<Void> sink = Mono.create(callback);
-												return stateMachineExecutor.queueEvent(Mono.just(message), callback)
-													.then(Mono.defer(() -> {
-														return Mono.just(StateMachineEventResult.<S, E>from(this, message, ResultType.ACCEPTED, sink));
-													}))
-													.onErrorResume(t -> {
-														return Mono.defer(() -> {
-															return Mono.just(StateMachineEventResult.<S, E>from(this, message, ResultType.DENIED));
-														});
+								.flatMap(transition -> Mono.from(transition.getTrigger().evaluate(triggerContext))
+									.flatMap(e -> {
+										if (e) {
+											MonoSinkStateMachineExecutorCallback callback = new MonoSinkStateMachineExecutorCallback();
+											Mono<Void> sink = Mono.create(callback);
+											return stateMachineExecutor.queueEvent(Mono.just(message), callback)
+												.then(Mono.defer(() -> {
+													return Mono.just(StateMachineEventResult.<S, E>from(this, message, ResultType.ACCEPTED, sink));
+												}))
+												.onErrorResume(t -> {
+													return Mono.defer(() -> {
+														return Mono.just(StateMachineEventResult.<S, E>from(this, message, ResultType.DENIED));
 													});
-											} else {
-												return Mono.empty();
-											}
-										});
-								})
+												});
+										} else {
+											return Mono.empty();
+										}
+									}))
 								.next()
-								.switchIfEmpty(Mono.defer(() -> {
-									return Mono.just(StateMachineEventResult.<S, E>from(this, message, ResultType.DENIED));
-								}));
+								.switchIfEmpty(Mono.defer(() -> Mono.just(StateMachineEventResult.<S, E>from(this, message, ResultType.DENIED))));
 							ret = ret.concatWith(result);
 						}
 						return ret;

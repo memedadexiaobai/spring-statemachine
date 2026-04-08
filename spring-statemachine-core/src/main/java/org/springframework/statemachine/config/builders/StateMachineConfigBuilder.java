@@ -43,12 +43,14 @@ public class StateMachineConfigBuilder<S, E>
 		StateMachineConfigurationBuilder<?, ?> configurationBuilder = getSharedObject(StateMachineConfigurationBuilder.class);
 		StateMachineTransitionBuilder<?, ?> transitionBuilder = getSharedObject(StateMachineTransitionBuilder.class);
 		StateMachineStateBuilder<?, ?> stateBuilder = getSharedObject(StateMachineStateBuilder.class);
+
 		ModelData<S, E> model = (ModelData<S, E>) modelBuilder.build();
 		ConfigurationData<S, E> stateMachineConfigurationConfig = null;
 		stateMachineConfigurationConfig = (ConfigurationData<S, E>) configurationBuilder.build();
 		transitionBuilder.setSharedObject(ConfigurationData.class, stateMachineConfigurationConfig);
 		TransitionsData<S, E> transitions = (TransitionsData<S, E>) transitionBuilder.build();
 		StatesData<S, E> states = (StatesData<S, E>) stateBuilder.build();
+
 		return new StateMachineConfig<S, E>(stateMachineConfigurationConfig, transitions, states, model);
 	}
 }

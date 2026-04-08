@@ -28,8 +28,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.util.Assert;
 
 /**
- * A base {@link AnnotationBuilder} that allows {@link AnnotationConfigurer}s to be
- * applied to it. This makes modifying the {@link AnnotationBuilder} a strategy
+ * A base {@link AnnotationBuilder} that allows {@link AnnotationConfigurer}s to be applied to it.
+ * This makes modifying the {@link AnnotationBuilder} a strategy
  * that can be customised and broken up into a number of
  * {@link AnnotationConfigurer} objects that have more specific goals than that
  * of the {@link AnnotationBuilder}.
@@ -467,16 +467,13 @@ public abstract class AbstractConfiguredAnnotationBuilder<O,I,B extends Annotati
 
 		/**
 		 * The state from when {@link AnnotationBuilder#build()} is first invoked until
-		 * all the {@link AnnotationConfigurer#init(AnnotationBuilder)} methods have
-		 * been invoked.
+		 * all the {@link AnnotationConfigurer#init(AnnotationBuilder)} methods have been invoked.
 		 */
 		INITIALIZING_MAINS(1),
 
 		/**
-		 * The state from after all main
-		 * {@link AnnotationConfigurer#init(AnnotationBuilder)}
-		 * have been invoked until after all the
-		 * {@link AnnotationConfigurer#configure(AnnotationBuilder)}
+		 * The state from after all main {@link AnnotationConfigurer#init(AnnotationBuilder)}
+		 * have been invoked until after all the {@link AnnotationConfigurer#configure(AnnotationBuilder)}
 		 * methods have been invoked.
 		 */
 		CONFIGURING_MAINS(2),

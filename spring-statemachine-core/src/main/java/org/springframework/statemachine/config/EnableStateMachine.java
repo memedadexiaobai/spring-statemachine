@@ -42,8 +42,12 @@ import org.springframework.statemachine.config.configuration.StateMachineConfigu
 @Target(ElementType.TYPE)
 @Documented
 @EnableAnnotationConfiguration
-@Import({ StateMachineConfigurationImportSelector.class, StateMachineCommonConfiguration.class, StateMachineConfiguration.class,
-		ObjectPostProcessorConfiguration.class })
+@Import({
+		StateMachineConfigurationImportSelector.class,
+		StateMachineCommonConfiguration.class,
+		StateMachineConfiguration.class,
+		ObjectPostProcessorConfiguration.class
+})
 @EnableWithStateMachine
 public @interface EnableStateMachine {
 

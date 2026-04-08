@@ -36,7 +36,13 @@ ext {
 dependencies {
 //    implementation('org.springframework.statemachine:spring-statemachine-starter')
     implementation project(':spring-statemachine-starter')
+    implementation project(path: ':spring-statemachine-zookeeper')
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.security:spring-security-core'
+    implementation 'junit:junit:4.13.1'
+    implementation 'io.projectreactor:reactor-test'
+    implementation project(path: ':spring-statemachine-test')
+    implementation project(path: ':spring-statemachine-data-common:spring-statemachine-data-jpa')
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

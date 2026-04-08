@@ -72,8 +72,9 @@ public interface StateMachineFactory<S, E> {
 					new DefaultStateMachineModel<S, E>(stateMachineConfigurationConfig, null, null),
 					stateMachineConfig.getModel().getFactory());
 		} else {
-			stateMachineFactory = new ObjectStateMachineFactory<S, E>(new DefaultStateMachineModel<S, E>(
-					stateMachineConfigurationConfig, stateMachineStates, stateMachineTransitions), null);
+			stateMachineFactory = new ObjectStateMachineFactory<S, E>(
+					new DefaultStateMachineModel<S, E>(stateMachineConfigurationConfig, stateMachineStates, stateMachineTransitions),
+					null);
 		}
 		return stateMachineFactory;
 	}

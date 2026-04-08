@@ -179,10 +179,8 @@ public abstract class AbstractStateMachineFactory<S, E> extends LifecycleObjectS
 
 		StateMachine<S, E> machine = null;
 
-		// we store mappings from state id's to states which gets
-		// created during the process. This is needed for transitions to
-		// find a correct mappings because they use state id's, not actual
-		// states.
+		// we store mappings from state id's to states which gets created during the process.
+		// This is needed for transitions to find a correct mappings because they use state id's, not actual states.
 		final Map<S, State<S, E>> stateMap = new HashMap<S, State<S, E>>();
 		Stack<MachineStackItem<S, E>> regionStack = new Stack<MachineStackItem<S, E>>();
 		Stack<StateData<S, E>> stateStack = new Stack<StateData<S, E>>();

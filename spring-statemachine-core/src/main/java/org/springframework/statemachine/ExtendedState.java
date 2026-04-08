@@ -18,8 +18,8 @@ package org.springframework.statemachine;
 import java.util.Map;
 
 /**
- * Extended states are used to supplement state machine with a variables. If
- * extended state is used a complete condition of a state machine is a
+ * Extended states are used to supplement state machine with a variables.
+ * If extended state is used a complete condition of a state machine is a
  * combination of its state an extended state variables.
  *
  * @author Janne Valkealahti
